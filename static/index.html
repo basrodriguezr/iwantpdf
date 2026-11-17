@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iwantpdf | Herramientas PDF locales</title>
+  <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#/" aria-label="iwantpdf, inicio">
+      <img src="/static/img/favicon.svg" alt="" width="30" height="30">
+      <span>i<b>want</b><em>PDF</em></span>
+    </a>
+    <nav class="mainnav">
+      <a href="#/unir-pdf">Unir PDF</a>
+      <a href="#/dividir-pdf">Dividir PDF</a>
+      <a href="#/comprimir-pdf">Comprimir PDF</a>
+      <div class="dd">
+        <button class="dd-btn">Convertir PDF <span class="caret"></span></button>
+        <div class="dd-menu dd-convert"></div>
+      </div>
+      <div class="dd">
+        <button class="dd-btn">Todas las herramientas <span class="caret"></span></button>
+        <div class="dd-menu dd-all"></div>
+      </div>
+    </nav>
+    <div class="topright">
+      <button class="iconbtn" id="btnTheme" title="Cambiar tema" aria-label="Cambiar tema">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="iconbtn" id="btnSettings" title="Ajustes" aria-label="Ajustes">
+        <svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+      <button class="iconbtn burger" id="btnMenu" aria-label="Menú">
+        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="foot">
+    <span>iwantpdf · todo se procesa en este equipo · sin anuncios, sin cuentas, sin límites</span>
+    <span class="foot-note">Los archivos temporales se borran automáticamente a las 3 horas.</span>
+  </footer>
+
+  <div id="overlay" class="overlay" hidden>
+    <div class="spinner"></div>
+    <p id="overlayMsg">Procesando…</p>
+  </div>
+  <div id="toast" class="toast" hidden></div>
+  <dialog id="dlg"></dialog>
+
+  <script src="/static/js/tools.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/editor.js"></script>
+  <script src="/static/js/extras.js"></script>
+</body>
+</html>

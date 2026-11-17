@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iwantpdf · Escanear</title>
+  <style>
+    :root { --brand: #E5402B; --bg: #F5F5FA; --text: #33333B; --muted: #6E6E7A; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #15151B; --text: #E9E9F0; --muted: #A0A0AE; } }
+    body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); text-align: center; padding: 28px 16px; }
+    h1 { font-size: 24px; } h1 em { color: var(--brand); font-style: normal; }
+    label.big { display: block; background: var(--brand); color: #fff; border-radius: 14px; padding: 22px; font-size: 20px; font-weight: 600; margin: 18px 0; }
+    input { display: none; }
+    p { color: var(--muted); }
+    #st { font-weight: 600; min-height: 24px; }
+  </style>
+</head>
+<body>
+  <h1>i want <em>PDF</em> · Escanear</h1>
+  <p>Haz una foto de cada página. Aparecerán al instante en el ordenador.</p>
+  <label class="big">📷 Hacer foto<input id="cam" type="file" accept="image/*" capture="environment"></label>
+  <label class="big" style="background:#555">🖼 Elegir de la galería<input id="gal" type="file" accept="image/*" multiple></label>
+  <div id="st"></div>
+  <script>
+    const sid = new URLSearchParams(location.search).get('s');
+    let n = 0;
+    async function send(files) {
+      if (!files.length) return;
+      const fd = new FormData();
+      [...files].forEach(f => fd.append('files', f, f.name || 'foto.jpg'));
+      document.getElementById('st').textContent = 'Enviando…';
+      try {
+        const r = await fetch('/api/scan/' + sid + '/upload', { method: 'POST', body: fd });
+        if (!r.ok) throw new Error();
+        n += files.length;
+        document.getElementById('st').textContent = `✔ ${n} página(s) enviadas`;
+      } catch { document.getElementById('st').textContent = '✖ No se pudo enviar. ¿Sigue abierto iwantpdf en el ordenador?'; }
+    }
+    document.getElementById('cam').onchange = e => send(e.target.files);
+    document.getElementById('gal').onchange = e => send(e.target.files);
+  </script>
+</body>
+</html>

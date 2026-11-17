@@ -1,0 +1,20 @@
+flask
+pymupdf
+pymupdf4llm
+pikepdf
+pypdf
+pdf2docx
+python-pptx
+openpyxl
+pillow
+qrcode
+websocket-client
+anthropic
+pywin32; sys_platform == "win32"
+winrt-runtime; sys_platform == "win32"
+winrt-Windows.Media.Ocr; sys_platform == "win32"
+winrt-Windows.Graphics.Imaging; sys_platform == "win32"
+winrt-Windows.Storage.Streams; sys_platform == "win32"
+winrt-Windows.Globalization; sys_platform == "win32"
+winrt-Windows.Foundation; sys_platform == "win32"
+winrt-Windows.Foundation.Collections; sys_platform == "win32"
