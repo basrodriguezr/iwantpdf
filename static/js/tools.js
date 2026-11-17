@@ -27,13 +27,13 @@ const POS6 = ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-cent
 const TOOLS = [
   {
     slug: 'unir-pdf', api: 'merge', cat: 'organize', icon: 'merge', name: 'Unir PDF',
-    desc: 'Une PDFs y ponlos en el orden que prefieras. ¡Rápido y fácil!',
+    desc: 'Junta varios PDF (o imágenes) en un solo documento. Arrastra las tarjetas para elegir el orden.',
     accept: PDF + ',' + IMAGES, multiple: true, min: 2, sortable: true, action: 'Unir PDF',
     hint: 'Arrastra las tarjetas para cambiar el orden.',
   },
   {
     slug: 'dividir-pdf', api: 'split', cat: 'organize', icon: 'split', name: 'Dividir PDF',
-    desc: 'Extrae una o varias páginas de tu PDF o convierte cada página del PDF en un archivo PDF independiente.',
+    desc: 'Separa un PDF por rangos, cada cierto número de páginas, por tamaño máximo o página a página.',
     accept: PDF, multiple: false, action: 'Dividir PDF',
     options: [
       { key: 'mode', type: 'cards', label: 'Modo', default: 'ranges', choices: [
@@ -49,7 +49,7 @@ const TOOLS = [
   },
   {
     slug: 'comprimir-pdf', api: 'compress', cat: 'optimize', icon: 'compress', name: 'Comprimir PDF',
-    desc: 'Consigue que tu documento PDF pese menos y, al mismo tiempo, mantener la máxima calidad posible. Optimiza tus archivos PDF.',
+    desc: 'Reduce el peso del PDF recomprimiendo sus imágenes. Tú eliges cuánta calidad sacrificar.',
     accept: PDF, multiple: true, action: 'Comprimir PDF',
     options: [
       { key: 'level', type: 'cards', label: 'Nivel de compresión', default: 'recommended', vertical: true, choices: [
@@ -61,32 +61,32 @@ const TOOLS = [
   },
   {
     slug: 'pdf-a-word', api: 'pdf_to_word', cat: 'fromPdf', icon: 'word', name: 'PDF a Word',
-    desc: 'Convierte fácilmente tus archivos PDF a DOCX de WORD editables.', accept: PDF, multiple: true, action: 'Convertir a Word',
+    desc: 'Pasa el texto del PDF a un documento .docx editable, con títulos, listas y saltos de página.', accept: PDF, multiple: true, action: 'Convertir a Word',
     options: [{ key: 'mode', type: 'cards', label: 'Tipo de documento', default: 'normal', choices: [
       ['normal', 'Sin OCR', 'PDF con texto seleccionable'], ['ocr', 'Con OCR', 'PDF escaneado']] }],
   },
   {
     slug: 'pdf-a-powerpoint', api: 'pdf_to_ppt', cat: 'fromPdf', icon: 'ppt', name: 'PDF a PowerPoint',
-    desc: 'Convierte tus archivos PDF a presentaciones PPTX de POWERPOINT.', accept: PDF, multiple: true, action: 'Convertir a PowerPoint',
+    desc: 'Cada página se vuelve una diapositiva .pptx, con el texto en cuadros editables o como imagen.', accept: PDF, multiple: true, action: 'Convertir a PowerPoint',
     options: [{ key: 'editable', type: 'check', label: 'Texto editable (si no, cada diapositiva es una imagen)', default: true }],
   },
   {
     slug: 'pdf-a-excel', api: 'pdf_to_excel', cat: 'fromPdf', icon: 'excel', name: 'PDF a Excel',
-    desc: 'Extrae directamente datos de PDF a Excel en pocos segundos.', accept: PDF, multiple: true, action: 'Convertir a Excel',
+    desc: 'Lleva el texto y las tablas del PDF a una planilla .xlsx, una hoja por página, con los números como números.', accept: PDF, multiple: true, action: 'Convertir a Excel',
   },
   {
     slug: 'word-a-pdf', api: 'word_to_pdf', cat: 'toPdf', icon: 'word', iconRev: true, name: 'Word a PDF',
-    desc: 'Convierte tus documentos WORD a PDF con la máxima calidad y exactamente igual que el archivo DOC o DOCX original.',
+    desc: 'Convierte documentos de Word (.doc, .docx, .rtf, .odt) a PDF usando Office o LibreOffice instalados en el equipo.',
     accept: '.doc,.docx,.rtf,.odt,.txt', multiple: true, action: 'Convertir a PDF', needs: 'office',
   },
   {
     slug: 'powerpoint-a-pdf', api: 'ppt_to_pdf', cat: 'toPdf', icon: 'ppt', iconRev: true, name: 'PowerPoint a PDF',
-    desc: 'Convierte tus presentaciones POWERPOINT a PDF con la máxima calidad y exactamente igual que el archivo PPT o PPTX original.',
+    desc: 'Convierte presentaciones (.ppt, .pptx, .odp) a PDF usando Office o LibreOffice instalados en el equipo.',
     accept: '.ppt,.pptx,.pps,.ppsx,.odp', multiple: true, action: 'Convertir a PDF', needs: 'office',
   },
   {
     slug: 'excel-a-pdf', api: 'excel_to_pdf', cat: 'toPdf', icon: 'excel', iconRev: true, name: 'Excel a PDF',
-    desc: 'Convierte tus tablas EXCEL a PDF con las columnas ajustadas al ancho de la página. Vertical u horizontal, tú escoges la orientación.',
+    desc: 'Convierte planillas (.xlsx, .xls, .csv, .ods) a PDF, ajustando las columnas al ancho de la hoja.',
     accept: '.xls,.xlsx,.xlsm,.csv,.ods', multiple: true, action: 'Convertir a PDF', needs: 'office',
     options: [
       { key: 'orientation', type: 'cards', label: 'Orientación', default: 'auto', choices: [['auto', 'Original', ''], ['portrait', 'Vertical', ''], ['landscape', 'Horizontal', '']] },
@@ -95,12 +95,12 @@ const TOOLS = [
   },
   {
     slug: 'editar-pdf', api: 'edit', cat: 'edit', icon: 'edit', name: 'Editar PDF',
-    desc: 'Añadir texto, imágenes, formas o anotaciones a mano en el documento PDF. Editar el tamaño, fuente y color del contenido añadido.',
+    desc: 'Escribe, pega imágenes, dibuja a mano alzada, marca con rectángulos, flechas o resaltador y tapa lo que no quieras mostrar.',
     accept: PDF, multiple: false, custom: 'editor', mode: 'edit', action: 'Guardar cambios',
   },
   {
     slug: 'pdf-a-jpg', api: 'pdf_to_jpg', cat: 'fromPdf', icon: 'jpg', name: 'PDF a JPG',
-    desc: 'Extrae todas las imágenes que están dentro de un PDF o convierte cada página en una imagen JPG.',
+    desc: 'Guarda cada página como imagen JPG o PNG, o rescata las imágenes que trae el PDF por dentro.',
     accept: PDF, multiple: true, action: 'Convertir a JPG',
     options: [
       { key: 'mode', type: 'cards', label: 'Modo', default: 'pages', choices: [['pages', 'Página a JPG', 'Cada página será una imagen'], ['images', 'Extraer imágenes', 'Las imágenes del PDF']] },
@@ -110,7 +110,7 @@ const TOOLS = [
   },
   {
     slug: 'jpg-a-pdf', api: 'jpg_to_pdf', cat: 'toPdf', icon: 'jpg', iconRev: true, name: 'JPG a PDF',
-    desc: 'Convierte tus imágenes JPG a PDF. Ajusta la orientación y los márgenes.',
+    desc: 'Arma un PDF con tus fotos o capturas, eligiendo tamaño de hoja, orientación y márgenes.',
     accept: IMAGES, multiple: true, sortable: true, action: 'Convertir a PDF',
     options: [
       { key: 'orientation', type: 'cards', label: 'Orientación', default: 'portrait', choices: [['portrait', 'Vertical', ''], ['landscape', 'Horizontal', ''], ['auto', 'Automática', '']] },
@@ -121,12 +121,12 @@ const TOOLS = [
   },
   {
     slug: 'firmar-pdf', api: 'sign', cat: 'security', icon: 'sign', name: 'Firmar PDF',
-    desc: 'Fírmalo tú mismo: dibuja, escribe o sube tu firma, y añade iniciales, nombre y fecha.',
+    desc: 'Dibuja, escribe o sube tu firma y colócala donde quieras, junto con iniciales, nombre o fecha.',
     accept: PDF, multiple: false, custom: 'editor', mode: 'sign', action: 'Firmar',
   },
   {
     slug: 'marca-de-agua', api: 'watermark', cat: 'edit', icon: 'watermark', name: 'Marca de agua',
-    desc: 'Elige una imagen o texto para insertarlo encima de un PDF. Elige posición, transparencia y tipografía.',
+    desc: 'Estampa un texto o un logo en las páginas, con la posición, inclinación y transparencia que quieras.',
     accept: PDF, multiple: true, action: 'Añadir marca de agua',
     options: [
       { key: 'type', type: 'cards', label: 'Tipo', default: 'text', choices: [['text', 'Texto', ''], ['image', 'Imagen', '']] },
@@ -148,12 +148,12 @@ const TOOLS = [
   },
   {
     slug: 'rotar-pdf', api: 'rotate', cat: 'edit', icon: 'rotate', name: 'Rotar PDF',
-    desc: 'Rota tus PDF como quieras. Rota muchos documentos PDF a la vez.',
+    desc: 'Endereza páginas giradas, una por una o todas juntas, en uno o varios PDF.',
     accept: PDF, multiple: true, custom: 'rotate', action: 'Rotar PDF',
   },
   {
     slug: 'html-a-pdf', api: 'html_to_pdf', cat: 'toPdf', icon: 'html', iconRev: true, name: 'HTML a PDF',
-    desc: 'Convierte páginas web de HTML a PDF. Copia y pega la dirección de la página que quieres convertir a PDF.',
+    desc: 'Convierte un archivo .html a PDF, eligiendo ancho de pantalla, tamaño de hoja y márgenes.',
     accept: '.html,.htm', multiple: false, custom: 'html', action: 'Convertir a PDF',
     options: [
       { key: 'screen', type: 'cards', label: 'Tamaño de pantalla', default: 'desktop', choices: [['desktop', 'Escritorio', '1440 px'], ['tablet', 'Tablet', '768 px'], ['mobile', 'Móvil', '390 px']] },
@@ -166,13 +166,13 @@ const TOOLS = [
   },
   {
     slug: 'desbloquear-pdf', api: 'unlock', cat: 'security', icon: 'unlock', name: 'Desbloquear PDF',
-    desc: 'Quita la contraseña y las restricciones de los PDF, así podrás usarlos para lo que quieras.',
+    desc: 'Quita la contraseña de un PDF que puedes abrir y elimina los bloqueos de copiar o imprimir.',
     accept: PDF, multiple: true, action: 'Desbloquear PDF',
     options: [{ key: 'password', type: 'password', label: 'Contraseña de apertura (si la tiene)', placeholder: 'déjalo vacío si solo tiene restricciones' }],
   },
   {
     slug: 'proteger-pdf', api: 'protect', cat: 'security', icon: 'lock', name: 'Proteger PDF',
-    desc: 'Protege PDF con contraseña. Encripta archivos PDF (AES-256) para evitar accesos no autorizados.',
+    desc: 'Ponle contraseña a tu PDF (cifrado AES-256) y decide si se podrá imprimir, copiar o modificar.',
     accept: PDF, multiple: true, action: 'Proteger PDF',
     options: [
       { key: 'password', type: 'password', label: 'Contraseña', required: true },
@@ -182,22 +182,22 @@ const TOOLS = [
   },
   {
     slug: 'ordenar-pdf', api: 'organize', cat: 'organize', icon: 'organize', name: 'Ordenar PDF',
-    desc: 'Ordena las páginas de tu PDF como quieras. Elimina o añade páginas PDF a tu documento según necesites.',
+    desc: 'Reordena, quita o gira páginas e intercala hojas en blanco o de otros PDF.',
     accept: PDF, multiple: true, custom: 'organize', action: 'Ordenar',
   },
   {
     slug: 'pdf-a-pdfa', api: 'pdfa', cat: 'fromPdf', icon: 'pdfa', name: 'PDF a PDF/A',
-    desc: 'Transforma tu PDF a PDF/A, la versión ISO estandarizada de PDF para archivar a largo plazo.',
+    desc: 'Prepara el PDF para archivo a largo plazo (PDF/A-1b, 2b o 3b) y te avisa de lo que impide cumplir la norma.',
     accept: PDF, multiple: true, action: 'Convertir a PDF/A',
     options: [{ key: 'level', type: 'cards', label: 'Nivel de conformidad', default: '2b', choices: [['1b', 'PDF/A-1b', ''], ['2b', 'PDF/A-2b', 'Recomendado'], ['3b', 'PDF/A-3b', '']] }],
   },
   {
     slug: 'reparar-pdf', api: 'repair', cat: 'optimize', icon: 'repair', name: 'Reparar PDF',
-    desc: 'Repara PDF dañados y recupera datos de PDF corruptos.', accept: PDF, multiple: true, action: 'Reparar PDF',
+    desc: 'Reconstruye la estructura de un PDF que no abre o da errores, para recuperar lo que se pueda.', accept: PDF, multiple: true, action: 'Reparar PDF',
   },
   {
     slug: 'numeros-de-pagina', api: 'page_numbers', cat: 'edit', icon: 'numbers', name: 'Números de página',
-    desc: 'Añade números de página a un PDF. Escoge posición, dimensiones, formato y tipografía.',
+    desc: 'Numera las páginas con el formato que quieras ("Página 3 de 10", "- 3 -"...), en la esquina que elijas.',
     accept: PDF, multiple: true, action: 'Añadir números',
     options: [
       { key: 'facing', type: 'check', label: 'Modo página doble (refleja izquierda/derecha en páginas pares)' },
@@ -215,7 +215,7 @@ const TOOLS = [
   },
   {
     slug: 'escanear-a-pdf', api: 'scan_to_pdf', cat: 'organize', icon: 'scan', name: 'Escanea a PDF',
-    desc: 'Captura documentos con la cámara del PC o desde tu móvil y conviértelos en PDF al instante.',
+    desc: 'Fotografía documentos con la cámara y conviértelos en un PDF limpio, en color, gris o blanco y negro.',
     accept: IMAGES, multiple: true, custom: 'scan', sortable: true, action: 'Crear PDF',
     options: [
       { key: 'filter', type: 'cards', label: 'Filtro', default: 'color', choices: [['color', 'Color', ''], ['gray', 'Gris', ''], ['bw', 'Blanco y negro', '']] },
@@ -224,7 +224,7 @@ const TOOLS = [
   },
   {
     slug: 'ocr-pdf', api: 'ocr', cat: 'optimize', icon: 'ocr', name: 'OCR PDF',
-    desc: 'Convierte fácilmente PDF escaneados en documentos PDF con texto seleccionable y buscable.',
+    desc: 'Reconoce el texto de un PDF escaneado para que puedas buscarlo, seleccionarlo y copiarlo.',
     accept: PDF, multiple: true, action: 'Aplicar OCR', needs: 'ocr',
     options: [
       { key: 'lang', type: 'select', label: 'Idioma del documento', default: '', choices: 'ocrLangs' },
@@ -234,28 +234,28 @@ const TOOLS = [
   },
   {
     slug: 'comparar-pdf', api: 'compare', cat: 'security', icon: 'compare', name: 'Comparar PDF',
-    desc: 'Compara dos archivos simultáneamente para ver las diferencias entre ambas versiones.',
+    desc: 'Pon dos versiones lado a lado y mira qué palabras se agregaron, quitaron o cambiaron.',
     accept: PDF, multiple: true, min: 2, max: 2, sortable: true, action: 'Comparar',
     hint: 'El primer archivo es el original y el segundo la versión nueva.',
   },
   {
     slug: 'censurar-pdf', api: 'redact', cat: 'security', icon: 'redact', name: 'Censurar PDF',
-    desc: 'Censura el texto y los gráficos de un PDF para eliminar permanentemente la información sensible.',
+    desc: 'Borra de verdad datos sensibles (nombres, correos, RUT, cuentas): lo tapado deja de existir en el archivo.',
     accept: PDF, multiple: false, custom: 'editor', mode: 'redact', action: 'Censurar',
   },
   {
     slug: 'recortar-pdf', api: 'crop', cat: 'edit', icon: 'crop', name: 'Recortar PDF',
-    desc: 'Elimina los márgenes de tus documentos PDF o selecciona un área específica para aplicar los cambios a una página o a todo el documento.',
+    desc: 'Quita los márgenes blancos de forma automática o recorta el área que marques, en una página o en todas.',
     accept: PDF, multiple: false, custom: 'editor', mode: 'crop', action: 'Recortar',
   },
   {
     slug: 'formularios-pdf', api: 'forms', cat: 'edit', icon: 'forms', name: 'Formularios PDF', badge: '¡Nuevo!',
-    desc: 'Detecta automáticamente los campos, crea PDFs rellenables o completa formularios PDF. Añade campos de texto, casillas, opciones y listas.',
+    desc: 'Rellena formularios o convierte un PDF en uno rellenable: detecta líneas y casillas y añade campos de texto, opciones y listas.',
     accept: PDF, multiple: false, custom: 'editor', mode: 'forms', action: 'Guardar formulario',
   },
   {
     slug: 'resumir-con-ia', api: 'summarize', cat: 'ai', icon: 'summary', name: 'Resumir con IA', badge: '¡Nuevo!',
-    desc: 'Genera resúmenes claros y concisos a partir de artículos, informes y trabajos e identifica los puntos clave en segundos.',
+    desc: 'Resume un PDF con Claude (o con un resumen local sin internet) y destaca sus puntos clave.',
     accept: PDF, multiple: false, action: 'Resumir',
     options: [
       { key: 'length', type: 'cards', label: 'Extensión', default: 'medium', choices: [['short', 'Breve', ''], ['medium', 'Media', ''], ['long', 'Detallada', '']] },
@@ -265,18 +265,18 @@ const TOOLS = [
   },
   {
     slug: 'traducir-pdf', api: 'translate', cat: 'ai', icon: 'translate', name: 'Traducir PDF', badge: '¡Nuevo!',
-    desc: 'Traduce archivos PDF con IA conservando la disposición de la página y el formato.',
+    desc: 'Traduce el texto del PDF con Claude y lo vuelve a colocar en su sitio en cada página.',
     accept: PDF, multiple: false, action: 'Traducir', needs: 'ai',
     options: [{ key: 'language', type: 'select', label: 'Traducir a', default: 'inglés', choices: LANGS.map(l => [l, l[0].toUpperCase() + l.slice(1)]) }],
   },
   {
     slug: 'pdf-a-markdown', api: 'pdf_to_markdown', cat: 'ai', icon: 'markdown', name: 'PDF a Markdown', badge: '¡Nuevo!',
-    desc: 'Convierte PDFs a archivos Markdown. Ideal para notas, documentos y LLMs. Conserva encabezados, tablas, listas y enlaces.',
+    desc: 'Saca el contenido del PDF a Markdown (.md), con títulos, listas y tablas, listo para notas o documentación.',
     accept: PDF, multiple: true, action: 'Convertir a Markdown',
   },
   {
     slug: 'flujos-de-trabajo', api: null, cat: 'workflow', icon: 'workflow', name: 'Crea un flujo de trabajo', featured: true,
-    desc: 'Crea flujos de trabajo personalizados con tus herramientas favoritas y automatiza tareas para reutilizarlas en cualquier momento.',
+    desc: 'Encadena varias herramientas (por ejemplo rotar, numerar y comprimir) y guarda la receta para repetirla con un clic.',
     accept: PDF, multiple: true, custom: 'workflow', action: 'Ejecutar flujo',
   },
 ];

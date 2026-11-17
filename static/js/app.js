@@ -63,7 +63,7 @@ function renderHome() {
   const filter = lsGet('filter', 'all');
   app.innerHTML = `
     <section class="hero">
-      <h1>Todas las herramientas PDF que necesitas</h1>
+      <h1>Tus PDF, resueltos sin complicaciones</h1>
       <p>Unir, dividir, comprimir, convertir, editar, firmar y proteger PDF. Todo en tu equipo, sin anuncios ni límites.</p>
     </section>
     <div class="filters">${FILTERS.map(([k, n]) => `<button class="pill${k === filter ? ' active' : ''}" data-f="${k}">${n}</button>`).join('')}</div>
